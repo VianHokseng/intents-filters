@@ -1,0 +1,82 @@
+Misi gan,sya baru bljar android studio neh,yg sya maw tnyakan seputar ngambil values lwat GetIntent...
+
+Saya pnya coding gni gan
+
+ADAPTER
+public class ImageAdapter extends BaseAdapter {
+    private Context mContext;
+
+
+
+    public Integer[]mThumbIds={
+            R.drawable.hcs1,
+            R.drawable.hcw,
+            R.drawable.ecolite,
+            R.drawable.facade,
+            R.drawable.halfslab,
+            R.drawable.kansteen,
+            R.drawable.minipile,
+            R.drawable.panelpagar,
+            R.drawable.pipa,
+            R.drawable.tangga,
+            R.drawable.uditch,
+            R.drawable.bepmix,
+
+
+
+    };
+}
+
+MainActivity
+public boolean onContextItemSelected(MenuItem item) {
+
+        GridView g = (GridView)findViewById(R.id.GridView1);
+        Integer resourceId = (Integer)g.getItemAtPosition(item.getItemId());
+        switch (item.getGroupId()){
+
+             
+
+            case 2:
+              // Intent i = new Intent(MainActivity.this,ImageAdapter.class);
+
+                Intent i = new Intent(MainActivity.this,ImagePreview.class);
+                i.putExtra("id" ,resourceId);
+                startActivity(i);
+                break;
+
+            case 1:
+                Intent k = new Intent(MainActivity.this,ImageDetail.class);
+                k.putExtra("id" ,resourceId);
+                startActivity(k);
+                break;
+        }
+        return true;
+    }
+    
+    pada receivernya sprti ini
+    
+    public class ImageDetail extends ActionBarActivity {
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        final TextView result = (TextView) findViewById(R.id.detail);
+        setContentView(R.layout.activity_image_detail);
+        LinearLayout linearLayout = new LinearLayout(this);
+        setContentView(linearLayout);
+        linearLayout.setOrientation(LinearLayout.VERTICAL);
+
+        Intent j = getIntent();
+
+        if (j.getExtras().getInt("id")==0) {
+            String[] textArray = {"One", "Two", "Three", "Four"};
+            for (int i = 0; i < textArray.length; i++) {
+                TextView textView = new TextView(this);
+                textView.setText(textArray[i]);
+                linearLayout.addView(textView);
+            }
+            }
+    Mksd saya itu pngennya ngambil value posisi gambar itu pada datagrid,saya pkir posisinya 0,1,dst jadi saya buat kondisi sprti itu
+    trnyta slah...yg bner gmn y gan?mhon bntuan nya pls :(
